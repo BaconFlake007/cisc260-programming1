@@ -54,11 +54,45 @@ void convertbase10(int num) {
 	printf("\n");
 }
 
+int converthex(char *hex) {
+	int total = 0;
+	for (int i=0;i<8;i++) {
+		if (hex[i] == 'A') {
+			total += 10 * pow(16,7-i);
+		}
+		else if (hex[i] == 'B') {
+			total += 11 * pow(16,7-i);
+		}
+		else if (hex[i] == 'C') {
+			total += 12 * pow(16,7-i);
+		}
+		else if (hex[i] == 'D') {
+			total += 13 * pow(16,7-i);
+		}
+		else if (hex[i] == 'E') {
+			total += 14 * pow(16,7-i);
+		}
+		else if (hex[i] == 'F') {
+			total += 15 * pow(16,7-i);
+		}
+		else {
+			int num = hex[i] - '0';
+			total += num * pow(16,7-i);
+		}
+	}
+		
+	return total;
+}
+
 int main() {
 	int num = 0;
+	char hexnum[8];
 	printf("Enter a Base-10 number: ");
 	scanf("%d", &num);
 	convertbase10(num);
+	printf("Enter a 32-bit hexadecimal number: ");
+	scanf("%s", hexnum);
+	printf("%s in Base-10 is: %d\n", hexnum, converthex(hexnum));
 	return 0;
 }
 
